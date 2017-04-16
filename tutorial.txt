@@ -1,0 +1,72 @@
+Install mpich (https://github.com/pmodels/mpich)
+
+1. Buat direktori untuk instalasi
+Choose an installation directory, say
+    /home/<USERNAME>/mpich-install
+
+2. Download, unpack dan menuju direktori hasil unpack
+$cd mpich-x.x
+
+3. configure
+./configure --prefix=/home/<USERNAME>/mpich-install 2>&1 | tee c.txt
+
+4. build
+make 2>&1 | tee m.txt
+
+5. install
+make install 2>&1 | tee mi.txt
+
+6. update path
+PATH=/home/<USERNAME>/mpich-install/bin:$PATH ; export PATH
+
+Install mpi4py (https://mpi4py.scipy.org/docs/usrman/install.html)
+
+1. download
+$ wget http://mpi4py.googlecode.com/files/mpi4py-X.X.X.tar.gz
+
+2. unpack
+$ tar -zxf mpi4py-X.X.X.tar.gz
+$ cd mpi4py-X.X.X
+
+3. build
+$ python setup.py build --mpicc=/where/you/have/mpicc
+
+4. install
+$ python setup.py install
+
+5. testing
+$ mpiexec -n 5 python demo/helloworld.py
+
+Source Code
+1.serial_pi.py
+
+$python serial_pi.py
+
+2.profile_pi.py
+
+Install line_profiler
+$ sudo pip install line_profiler
+
+Tambahkan keyword @profile ke function yang ingin diketahui performansinya
+
+Lakukan profiling
+$ kernprof -lv profile_pi.py
+
+3. hello_mpi.py
+
+$ mpiexec -n 4 python hello_mpi.py
+catatan: -n 4 menyatakan banyaknya paralel proses
+
+4. p2p_mpi.py
+$ mpiexec -n 4 python p2p_mpi.py
+
+5.bcast_mpi.py
+$ mpiexec -n 4 python bcast_mpi.py
+
+6.sum_p2p.py
+$ mpiexec -n 4 python sum_p2p.py
+
+7.sum_reduce.py
+$ mpiexec -n 4 python sum_reduce.py
+
+Semua sudah diuji pada Linux Mint 17.0 Rosa
